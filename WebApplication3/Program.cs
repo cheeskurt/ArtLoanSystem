@@ -26,7 +26,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.MapRazorPages();
-app.MapStaticAssets();
+app.MapStaticAssets(); 
 
 app.MapControllerRoute(
     name: "default",
