@@ -7,6 +7,6 @@
 
         public bool Available { get; set; }
 
-        public ICollection<>? Items { get; set; }
+        public ICollection<Item>? Items { get; set; }
     }
 }
