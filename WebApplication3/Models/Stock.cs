@@ -4,7 +4,6 @@
     {
         public int StockID {  get; set; }
         public string TheStock {  get; set; }
-
         public bool Available { get; set; }
 
         public ICollection<Item>? Items { get; set; }
