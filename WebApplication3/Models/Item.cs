@@ -5,5 +5,8 @@
         public int ItemID { get; set; }
         public string TheItem { get; set; }
         public string ImageURL { get; set; }
+
+        public ICollection<Stock> Stocks { get; set; }
+        public ICollection<ItemIssued> ItemIssueds { get; set; }
     }
 }
