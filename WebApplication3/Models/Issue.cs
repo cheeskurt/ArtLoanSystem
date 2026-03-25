@@ -15,6 +15,6 @@ namespace WebApplication3.Models
         public DateTime DateReturned { get; set; }
         public DateTime DateDue { get; set; }
 
-        public ICollection<ItemIssued>? ItemIssueds { get; set; }
+        public ICollection<ItemIssue>? ItemIssues { get; set; }
     }
 }

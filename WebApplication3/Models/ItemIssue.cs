@@ -4,16 +4,16 @@ namespace WebApplication3.Models
 {
     public enum Category
     { 
-    
+        Storage, Tablets, Paints, Photography
     }
     public enum Condition
     {
-
+        Excellent, Good, Poor, Damaged
     }
 
-    public class ItemIssued
+    public class ItemIssue
     {
-        public int ItemIssuedID { get; set; }
+        public int ItemIssueID { get; set; }
         public int IssueID { get; set; }
         public int ItemID { get; set; }
         public Category Category { get; set; }
