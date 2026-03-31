@@ -1,10 +1,30 @@
 ﻿using WebApplication3.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication3.Models
 {
     public enum Class
     {
-        ART9, ART10, APA11, APD11, APA12, APD12, PHO12, APA13, APD13, PHO13
+        [Display(Name = "9ART")]
+        NINEART,
+        [Display(Name = "10ART")]
+        TENART,
+        [Display(Name = "11APA")]
+        ELEVENAPA,
+        [Display(Name = "11APD")]
+        ELEVENAPD,
+        [Display(Name = "12APA")]
+        TWELVEAPA,
+        [Display(Name = "12APD")]
+        TWELVEAPD,
+        [Display(Name = "12PHO")]
+        TWELVEPHO,
+        [Display(Name = "13APA")]
+        THIRTEENAPA,
+        [Display(Name = "13APD")]
+        THIRTEENAPD,
+        [Display(Name = "13PHO")]
+        THIRTEENPHO
     }
 
     public class Student
