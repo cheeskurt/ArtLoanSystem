@@ -12,22 +12,22 @@ namespace WebApplication3.Data
             context.Database.EnsureCreated();
 
             // Seed Items
-            if (!context.Items.Any())
+            if (!context.Item.Any())
             {
                 var items = new Item[]
                 {
                     new Item { TheItem = "Canon EOS R50", ImageURL = "/images/canon-eos-r50.jpg" },
-                    new Item { TheItem = "iPad Pro 11\"", ImageURL = "/images/ipad-pro.jpg" },
+                    new Item { TheItem = "iPad Pro 11", ImageURL = "/images/ipad-pro.jpg" },
                     new Item { TheItem = "SD Card 128GB", ImageURL = "/images/sd-card.jpg" },
                     new Item { TheItem = "Acrylic Paint Set", ImageURL = "/images/acrylic-paints.jpg" },
                     new Item { TheItem = "Tripod", ImageURL = "/images/tripod.jpg" },
                 };
-                foreach (var i in items) context.Items.Add(i);
+                foreach (var i in items) context.Item.Add(i);
                 context.SaveChanges();
             }
 
             // Seed Students
-            if (!context.Students.Any())
+            if (!context.Student.Any())
             {
                 var students = new Student[]
                 {
@@ -37,12 +37,12 @@ namespace WebApplication3.Data
                     new Student { AC = "AC004", FirstName = "David",   LastName = "Brown",   Class = Class.TWELVEPHO },
                     new Student { AC = "AC005", FirstName = "Eva",     LastName = "Jones",   Class = Class.NINEART },
                 };
-                foreach (var s in students) context.Students.Add(s);
+                foreach (var s in students) context.Student.Add(s);
                 context.SaveChanges();
             }
 
             // Seed Issues
-            if (!context.Issues.Any())
+            if (!context.Issue.Any())
             {
                 var issues = new Issue[]
                 {
@@ -62,12 +62,12 @@ namespace WebApplication3.Data
                         DateReturned = DateTime.Parse("2024-03-12")
                     },
                 };
-                foreach (var iss in issues) context.Issues.Add(iss);
+                foreach (var iss in issues) context.Issue.Add(iss);
                 context.SaveChanges();
             }
 
             // Seed Stocks
-            if (!context.Stocks.Any())
+            if (!context.Stock.Any())
             {
                 var stocks = new Stock[]
                 {
@@ -78,12 +78,12 @@ namespace WebApplication3.Data
                     new Stock { TheStock = "Acrylic Paint Set #1",   ItemID = 4, Available = false },
                     new Stock { TheStock = "Tripod - Unit 1",        ItemID = 5, Available = true  },
                 };
-                foreach (var st in stocks) context.Stocks.Add(st);
+                foreach (var st in stocks) context.Stock.Add(st);
                 context.SaveChanges();
             }
 
             // Seed ItemIssues
-            if (!context.ItemIssues.Any())
+            if (!context.ItemIssue.Any())
             {
                 var itemIssues = new ItemIssue[]
                 {
@@ -93,7 +93,7 @@ namespace WebApplication3.Data
                     new ItemIssue { IssueID = 2, ItemID = 4, Category = Category.Paints,      Condition = Condition.Poor,      Note = "Several colours running low."},
                     new ItemIssue { IssueID = 3, ItemID = 5, Category = Category.Photography, Condition = Condition.Damaged,   Note = "One leg latch is broken."   },
                 };
-                foreach (var ii in itemIssues) context.ItemIssues.Add(ii);
+                foreach (var ii in itemIssues) context.ItemIssue.Add(ii);
                 context.SaveChanges();
             }
         }
