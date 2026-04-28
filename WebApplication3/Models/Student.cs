@@ -30,9 +30,13 @@ namespace WebApplication3.Models
     public class Student
     {
         public int StudentID { get; set; }
+        [Required(ErrorMessage = ""), MaxLength(10), MinLength(8)]
         public string AC { get; set; }
+        [Required(ErrorMessage = ""), StringLength(30, ErrorMessage = "")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = ""), StringLength(30, ErrorMessage = "")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "")]
         public Class Class { get; set; }
 
     }
