@@ -9,7 +9,7 @@ namespace WebApplication3.Models
         public string TheItem { get; set; }
 
         // Adjust to display proper imagery
-        public string ImageURL { get; set; }
+        public string ImageURL { get; set; } 
 
         public ICollection<Stock>? Stocks { get; set; }
         public ICollection<ItemIssue>? ItemIssues { get; set; }
