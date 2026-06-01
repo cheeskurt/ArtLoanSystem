@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Areas.Identity.Data;
-using WebApplication3.Data;
+// using WebApplication3.Data;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ArtEquipmentContextConnection") ?? throw new InvalidOperationException("Connection string 'ArtEquipmentContextConnection' not found.");;
 
@@ -22,6 +22,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+/*
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -36,6 +37,7 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred creating the DB.");
     }
 }
+*/
 
 app.UseHttpsRedirection();
 app.UseRouting();
