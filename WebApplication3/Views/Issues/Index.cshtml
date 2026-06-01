@@ -18,9 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateReturned)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateDue)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -32,9 +29,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateReturned)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDue)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IssueID">Edit</a> |
