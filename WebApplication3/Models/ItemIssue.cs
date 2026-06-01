@@ -21,18 +21,23 @@ namespace WebApplication3.Models
         [Key]
         public int ItemIssueID { get; set; }
 
+        [Required]
         [ForeignKey("Issue")]
         public int IssueID { get; set; }
-         
+
+        [Required] 
         [ForeignKey("Item")]
         public int ItemID { get; set; }
 
+        [Required]
         public Category Category { get; set; }
 
+        [Required]
         public Condition Condition { get; set; }
 
 
         // A maximum length of 150 is configured for an optional note
+        [Required]
         [MaxLength(150)]
         public string Note { get; set; }
         
