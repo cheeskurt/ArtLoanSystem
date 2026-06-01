@@ -12,7 +12,7 @@ namespace WebApplication3.Models
         B4,
         B5,
         B6
-    }
+    } 
 
     public class Student
     {
