@@ -7,7 +7,7 @@ namespace WebApplication3.Models
     public class Stock
     {
         [Key]
-        public int StockID {  get; set; }
+        public int StockID {  get; set; } 
         public int ItemID { get; set; }
 
     }
