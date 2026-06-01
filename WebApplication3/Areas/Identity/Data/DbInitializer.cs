@@ -31,11 +31,12 @@ namespace WebApplication3.Data
             {
                 var students = new Student[]
                 {
-                    new Student { AC = "AC001", FirstName = "Alice",   LastName = "Smith",   Class = Class.TWELVEAPA },
-                    new Student { AC = "AC002", FirstName = "Bob",     LastName = "Johnson", Class = Class.ELEVENAPA },
-                    new Student { AC = "AC003", FirstName = "Carol",   LastName = "Williams",Class = Class.THIRTEENPHO },
-                    new Student { AC = "AC004", FirstName = "David",   LastName = "Brown",   Class = Class.TWELVEPHO },
-                    new Student { AC = "AC005", FirstName = "Eva",     LastName = "Jones",   Class = Class.NINEART },
+                    new Student { AC = "AC001", FirstName = "Alice",   LastName = "Smith",   Class = Class.B1 },
+                    new Student { AC = "AC002", FirstName = "Bob",     LastName = "Johnson", Class = Class.B2 },
+                    new Student { AC = "AC003", FirstName = "Carol",   LastName = "Williams",Class = Class.B3 },
+                    new Student { AC = "AC004", FirstName = "David",   LastName = "Brown",   Class = Class.B4 },
+                    new Student { AC = "AC005", FirstName = "Eva",     LastName = "Jones",   Class = Class.B5 },
+                    new Student { AC = "AC005", FirstName = "Ethan",   LastName = "Maine",   Class = Class.B6 },
                 };
                 foreach (var s in students) context.Student.Add(s);
                 context.SaveChanges();
@@ -48,17 +49,14 @@ namespace WebApplication3.Data
                 {
                     new Issue {
                         DateIssued   = DateTime.Parse("2024-01-15"),
-                        DateDue      = DateTime.Parse("2024-01-22"),
                         DateReturned = DateTime.Parse("2024-01-21")
                     },
                     new Issue {
                         DateIssued   = DateTime.Parse("2024-02-01"),
-                        DateDue      = DateTime.Parse("2024-02-08"),
                         DateReturned = DateTime.Parse("2024-02-10")
                     },
                     new Issue {
                         DateIssued   = DateTime.Parse("2024-03-05"),
-                        DateDue      = DateTime.Parse("2024-03-12"),
                         DateReturned = DateTime.Parse("2024-03-12")
                     },
                 };
@@ -71,12 +69,12 @@ namespace WebApplication3.Data
             {
                 var stocks = new Stock[]
                 {
-                    new Stock { TheStock = "Canon EOS R50 - Unit 1", ItemID = 1, Available = true  },
-                    new Stock { TheStock = "Canon EOS R50 - Unit 2", ItemID = 1, Available = false },
-                    new Stock { TheStock = "iPad Pro - Unit 1",      ItemID = 2, Available = true  },
-                    new Stock { TheStock = "SD Card - Unit 1",       ItemID = 3, Available = true  },
-                    new Stock { TheStock = "Acrylic Paint Set #1",   ItemID = 4, Available = false },
-                    new Stock { TheStock = "Tripod - Unit 1",        ItemID = 5, Available = true  },
+                    new Stock { TheStock = "Canon EOS R50 - Unit 1", ItemID = 1 },
+                    new Stock { TheStock = "Canon EOS R50 - Unit 2", ItemID = 1 },
+                    new Stock { TheStock = "iPad Pro - Unit 1",      ItemID = 2 },
+                    new Stock { TheStock = "SD Card - Unit 1",       ItemID = 3 },
+                    new Stock { TheStock = "Acrylic Paint Set #1",   ItemID = 4 },
+                    new Stock { TheStock = "Tripod - Unit 1",        ItemID = 5 },
                 };
                 foreach (var st in stocks) context.Stock.Add(st);
                 context.SaveChanges();

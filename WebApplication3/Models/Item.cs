@@ -1,9 +1,14 @@
-﻿namespace WebApplication3.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication3.Models
 {
     public class Item
     {
+        [Key]
         public int ItemID { get; set; }
         public string TheItem { get; set; }
+
+        // Adjust to display proper imagery
         public string ImageURL { get; set; }
 
         public ICollection<Stock>? Stocks { get; set; }
