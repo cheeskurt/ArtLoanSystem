@@ -6,6 +6,8 @@ namespace WebApplication3.Models
     {
         [Key]
         public int ItemID { get; set; }
+
+        [Display(Name = "Item Name")]
         public string TheItem { get; set; }
 
         // Adjust to display proper imagery
