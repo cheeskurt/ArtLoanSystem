@@ -54,7 +54,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IssueID,DateIssued,DateReturned,DateDue")] Issue issue)
+        public async Task<IActionResult> Create([Bind("IssueID,DateIssued,DateReturned")] Issue issue)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IssueID,DateIssued,DateReturned,DateDue")] Issue issue)
+        public async Task<IActionResult> Edit(int id, [Bind("IssueID,DateIssued,DateReturned")] Issue issue)
         {
             if (id != issue.IssueID)
             {
