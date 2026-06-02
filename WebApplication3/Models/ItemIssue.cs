@@ -29,8 +29,10 @@ namespace WebApplication3.Models
         [ForeignKey("Item")]
         public int ItemID { get; set; }
 
+        [Required]
         public Category Category { get; set; }
 
+        [Required]
         public Condition Condition { get; set; }
 
 
