@@ -11,7 +11,7 @@ namespace WebApplication3.Data
         {
             context.Database.EnsureCreated();
 
-            // Seed Items
+
             if (!context.Item.Any())
             {
                 var items = new Item[]
@@ -26,8 +26,6 @@ namespace WebApplication3.Data
                 context.SaveChanges();
             }
 
-            // Seed Students
-            // Note: AC must be between 8–10 characters to satisfy [MinLength(8), MaxLength(10)]
             if (!context.Student.Any())
             {
                 var students = new Student[]
@@ -43,7 +41,6 @@ namespace WebApplication3.Data
                 context.SaveChanges();
             }
 
-            // Seed Issues
             if (!context.Issue.Any())
             {
                 var issues = new Issue[]
@@ -56,8 +53,6 @@ namespace WebApplication3.Data
                 context.SaveChanges();
             }
 
-            // Seed Stocks
-            // Stock only has StockID and ItemID — no name/label field
             if (!context.Stock.Any())
             {
                 var stocks = new Stock[]
@@ -73,7 +68,6 @@ namespace WebApplication3.Data
                 context.SaveChanges();
             }
 
-            // Seed ItemIssues
             if (!context.ItemIssue.Any())
             {
                 var itemIssues = new ItemIssue[]
