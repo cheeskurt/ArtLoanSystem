@@ -18,7 +18,7 @@ namespace WebApplication3.Models
     {
 
         [Key]
-        public int StudentID { get; set; }
+        public int StudentID { get; set; } 
 
         // The field is marked as required, mandating that this field is filled. A maximum length of 30 is configured for the student's first name.
         [Display(Name = "First Name")]
