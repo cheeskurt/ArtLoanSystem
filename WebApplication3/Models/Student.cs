@@ -30,9 +30,13 @@ namespace WebApplication3.Models
         [Required(ErrorMessage = "Student's last name is required."), StringLength(30, ErrorMessage = "Last name cant be longer than 30 characters.")]
         public string LastName { get; set; }
 
-        // The field is marked as required, mandating that a choice from the dropdown is selected.
-        [Required(ErrorMessage = "Student's class is required.")]
-        public Class Class { get; set; }
+        [Required]
+        public int Year { get; set; }
 
+        [Required]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")] 
+        public string Email { get; set; }
+
+        public ICollection<Issue> Issues { get; set; }
     }
 }

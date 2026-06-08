@@ -2,18 +2,23 @@
 
 namespace WebApplication3.Models
 {
+    // An enum declaring the category of an item.
+    public enum Category
+    { 
+        Storage, Tablets, Paints, Cameras
+    }
     public class Item
     {
         [Key]
         public int ItemID { get; set; }
 
+        [Required]
         [Display(Name = "Item Name")]
-        public string TheItem { get; set; }
+        public string ItemName { get; set; }
 
-        // Adjust to display proper imagery
-        public string ImageURL { get; set; } 
+        [Required]
+        public Category Category { get; set; }
 
-        public ICollection<Stock>? Stocks { get; set; }
-        public ICollection<ItemIssue>? ItemIssues { get; set; }
+
     }
 }

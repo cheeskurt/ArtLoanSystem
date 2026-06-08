@@ -1,14 +1,39 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography.Pkcs;
+using WebApplication3.Areas.Identity.Data;
 
 namespace WebApplication3.Models
 {
+
     public class Issue
     {
         [Key]
         public int IssueID { get; set; } 
+
+        [Required]
+        [ForeignKey("Student")]
+        public int StudentID { get; set; }
+
+        [Required]
+        [ForeignKey("User")]
+        public int UserID { get; set; }
+
+        [Required]
+        [ForeignKey("Subject")]
+        public int SubjectID { get; set; }
+
+        [Required]
+        [Range(1, 5)]
+        public int Period { get; set; }
+        public string? Reason { get; set; }
+
+        [Required]
         public DateTime DateIssued { get; set; }
-        public DateTime DateReturned { get; set; }
-        public ICollection<ItemIssue>? ItemIssues { get; set; }
+
+        public Student Students { get; set; }
+        public User Users { get; set; }
+        public Subject Subjects { get; set; }
     }
 }
