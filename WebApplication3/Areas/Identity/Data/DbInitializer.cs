@@ -1,6 +1,4 @@
 ﻿using WebApplication3.Models;
-using System;
-using System.Linq;
 using WebApplication3.Areas.Identity.Data;
 
 namespace WebApplication3.Data
@@ -11,18 +9,22 @@ namespace WebApplication3.Data
         {
             context.Database.EnsureCreated();
 
-
-            if (!context.Item.Any())
+            if (!context.Subject.Any())
             {
-                var items = new Item[]
+                var subjects = new Subject[]
                 {
-                    new Item { TheItem = "Canon EOS R50",    ImageURL = "/images/canon-eos-r50.jpg"  },
-                    new Item { TheItem = "iPad Pro 11",      ImageURL = "/images/ipad-pro.jpg"       },
-                    new Item { TheItem = "SD Card 128GB",    ImageURL = "/images/sd-card.jpg"        },
-                    new Item { TheItem = "Acrylic Paint Set",ImageURL = "/images/acrylic-paints.jpg" },
-                    new Item { TheItem = "Tripod",           ImageURL = "/images/tripod.jpg"         },
+                    new Subject { SubjectName = "9APA" },
+                    new Subject { SubjectName = "10APA" },
+                    new Subject { SubjectName = "11APA" },
+                    new Subject { SubjectName = "11APD" },
+                    new Subject { SubjectName = "12APA" },
+                    new Subject { SubjectName = "12APD" },
+                    new Subject { SubjectName = "12PHO" },
+                    new Subject { SubjectName = "13APA" },
+                    new Subject { SubjectName = "13APD" },
+                    new Subject { SubjectName = "13PHO" },
                 };
-                foreach (var i in items) context.Item.Add(i);
+                foreach (var s in subjects) context.Subject.Add(s);
                 context.SaveChanges();
             }
 
@@ -30,26 +32,78 @@ namespace WebApplication3.Data
             {
                 var students = new Student[]
                 {
-                    new Student { FirstName = "Alice", LastName = "Smith",    Class = Class.B1 },
-                    new Student { FirstName = "Bob",   LastName = "Johnson",  Class = Class.B2 },
-                    new Student { FirstName = "Carol", LastName = "Williams", Class = Class.B3 },
-                    new Student { FirstName = "David", LastName = "Brown",    Class = Class.B4 },
-                    new Student { FirstName = "Eva",   LastName = "Jones",    Class = Class.B5 },
-                    new Student { FirstName = "Ethan", LastName = "Maine",    Class = Class.B6 },
+                    new Student { FirstName = "Alice",  LastName = "Smith",    Year = 13, Email = "asmith@student.school.nz"    },
+                    new Student { FirstName = "Bob",    LastName = "Johnson",  Year = 12, Email = "bjohnson@student.school.nz"  },
+                    new Student { FirstName = "Carol",  LastName = "Williams", Year = 13, Email = "cwilliams@student.school.nz" },
+                    new Student { FirstName = "David",  LastName = "Brown",    Year = 12, Email = "dbrown@student.school.nz"    },
+                    new Student { FirstName = "Eva",    LastName = "Jones",    Year = 13, Email = "ejones@student.school.nz"    },
+                    new Student { FirstName = "Finn",     LastName = "Taylor",     Year = 9,  Email = "ftaylor@student.school.nz" },
+                    new Student { FirstName = "Grace",    LastName = "Wilson",     Year = 10, Email = "gwilson@student.school.nz" },
+                    new Student { FirstName = "Henry",    LastName = "Martin",     Year = 11, Email = "hmartin@student.school.nz" },
+                    new Student { FirstName = "Isla",     LastName = "Lee",        Year = 12, Email = "ilee@student.school.nz" },
+                    new Student { FirstName = "Jack",     LastName = "Walker",     Year = 13, Email = "jwalker@student.school.nz" },
+                    new Student { FirstName = "Katie",    LastName = "Hall",       Year = 9,  Email = "khall@student.school.nz" },
+                    new Student { FirstName = "Liam",     LastName = "Allen",      Year = 10, Email = "lallen@student.school.nz" },
+                    new Student { FirstName = "Mia",      LastName = "Young",      Year = 11, Email = "myoung@student.school.nz" },
+                    new Student { FirstName = "Noah",     LastName = "King",       Year = 12, Email = "nking@student.school.nz" },
+                    new Student { FirstName = "Olivia",   LastName = "Wright",     Year = 13, Email = "owright@student.school.nz" },
+                    new Student { FirstName = "Parker",   LastName = "Scott",      Year = 9,  Email = "pscott@student.school.nz" },
+                    new Student { FirstName = "Quinn",    LastName = "Green",      Year = 10, Email = "qgreen@student.school.nz" },
+                    new Student { FirstName = "Ruby",     LastName = "Baker",      Year = 11, Email = "rbaker@student.school.nz" },
+                    new Student { FirstName = "Sam",      LastName = "Adams",      Year = 12, Email = "sadams@student.school.nz" },
+                    new Student { FirstName = "Tessa",    LastName = "Nelson",     Year = 13, Email = "tnelson@student.school.nz" },
+                    new Student { FirstName = "Uma",      LastName = "Carter",     Year = 9,  Email = "ucarter@student.school.nz" },
+                    new Student { FirstName = "Victor",   LastName = "Mitchell",   Year = 10, Email = "vmitchell@student.school.nz" },
+                    new Student { FirstName = "Willow",   LastName = "Perez",      Year = 11, Email = "wperez@student.school.nz" },
+                    new Student { FirstName = "Xavier",   LastName = "Roberts",    Year = 12, Email = "xroberts@student.school.nz" },
+                    new Student { FirstName = "Yasmin",   LastName = "Turner",     Year = 13, Email = "yturner@student.school.nz" },
+                    new Student { FirstName = "Zane",     LastName = "Phillips",   Year = 9,  Email = "zphillips@student.school.nz" },
+                    new Student { FirstName = "Amelia",   LastName = "Campbell",   Year = 10, Email = "acampbell@student.school.nz" },
+                    new Student { FirstName = "Blake",    LastName = "Parker",     Year = 11, Email = "bparker@student.school.nz" },
+                    new Student { FirstName = "Chloe",    LastName = "Evans",      Year = 12, Email = "cevans@student.school.nz" },
+                    new Student { FirstName = "Dylan",    LastName = "Murphy",     Year = 13, Email = "dmurphy@student.school.nz" },
                 };
                 foreach (var s in students) context.Student.Add(s);
                 context.SaveChanges();
             }
 
-            if (!context.Issue.Any())
+            if (!context.Item.Any())
             {
-                var issues = new Issue[]
+                var items = new Item[]
                 {
-                    new Issue { DateIssued = DateTime.Parse("2024-01-15"), DateReturned = DateTime.Parse("2024-01-21") },
-                    new Issue { DateIssued = DateTime.Parse("2024-02-01"), DateReturned = DateTime.Parse("2024-02-10") },
-                    new Issue { DateIssued = DateTime.Parse("2024-03-05"), DateReturned = DateTime.Parse("2024-03-12") },
+                    new Item { ItemName = "Canon EOS R50",              Category = Category.Cameras  },
+                    new Item { ItemName = "Canon EOS 6D",               Category = Category.Cameras  },
+                    new Item { ItemName = "SD Card 128GB",              Category = Category.Storage  },
+                    new Item { ItemName = "Wacom Intuos Pro",           Category = Category.Tablets  },
+                    new Item { ItemName = "Holbein Artists Gouache Set", Category = Category.Paints  },
+                    new Item { ItemName = "Winsor & Newton Oil Set",    Category = Category.Paints   },
+                    new Item { ItemName = "Canon EOS 80D", Category = Category.Cameras },
+                    new Item { ItemName = "Canon EF 50mm Lens", Category = Category.Cameras },
+                    new Item { ItemName = "Nikon D3500", Category = Category.Cameras },
+                    new Item { ItemName = "Sony A6400", Category = Category.Cameras },
+                    new Item { ItemName = "Canon Speedlite 430EX III", Category = Category.Cameras },
+                    new Item { ItemName = "SD Card 64GB", Category = Category.Storage },
+                    new Item { ItemName = "SD Card 256GB", Category = Category.Storage },
+                    new Item { ItemName = "Portable SSD 1TB", Category = Category.Storage },
+                    new Item { ItemName = "USB Flash Drive 64GB", Category = Category.Storage },
+                    new Item { ItemName = "External HDD 2TB", Category = Category.Storage },
+                    new Item { ItemName = "Wacom One", Category = Category.Tablets },
+                    new Item { ItemName = "Huion Kamvas 13", Category = Category.Tablets },
+                    new Item { ItemName = "XP-Pen Deco Pro", Category = Category.Tablets },
+                    new Item { ItemName = "Wacom Intuos Small", Category = Category.Tablets },
+                    new Item { ItemName = "Huion Inspiroy H950P", Category = Category.Tablets },
+                    new Item { ItemName = "Acrylic Paint Set", Category = Category.Paints },
+                    new Item { ItemName = "Watercolour Paint Set", Category = Category.Paints },
+                    new Item { ItemName = "Oil Paint Brush Kit", Category = Category.Paints },
+                    new Item { ItemName = "Canvas Pack A3", Category = Category.Paints },
+                    new Item { ItemName = "Palette Knife Set", Category = Category.Paints },
+                    new Item { ItemName = "Gesso Primer 1L", Category = Category.Paints },
+                    new Item { ItemName = "Acrylic Brush Set", Category = Category.Paints },
+                    new Item { ItemName = "Watercolour Brush Set", Category = Category.Paints },
+                    new Item { ItemName = "Artist Palette Large", Category = Category.Paints },
+                    new Item { ItemName = "Sketching Paint Marker Set", Category = Category.Paints },
                 };
-                foreach (var iss in issues) context.Issue.Add(iss);
+                foreach (var i in items) context.Item.Add(i);
                 context.SaveChanges();
             }
 
@@ -57,14 +111,86 @@ namespace WebApplication3.Data
             {
                 var stocks = new Stock[]
                 {
-                    new Stock { ItemID = 1 },
-                    new Stock { ItemID = 1 },
-                    new Stock { ItemID = 2 },
-                    new Stock { ItemID = 3 },
-                    new Stock { ItemID = 4 },
-                    new Stock { ItemID = 5 },
+                    new Stock { ItemID = 1, StockTag = "CAM01" },
+                    new Stock { ItemID = 1, StockTag = "CAM02" },
+                    new Stock { ItemID = 2, StockTag = "CAM03" },
+                    new Stock { ItemID = 3, StockTag = "SD01"  },
+                    new Stock { ItemID = 3, StockTag = "SD02"  },
+                    new Stock { ItemID = 3, StockTag = "SD03"  },
+                    new Stock { ItemID = 4, StockTag = "WAC01" },
+                    new Stock { ItemID = 4, StockTag = "WAC02" },
+                    new Stock { ItemID = 5, StockTag = "GOU01" },
+                    new Stock { ItemID = 5, StockTag = "GOU02" },
+                    new Stock { ItemID = 6, StockTag = "OIL01" },
+                    new Stock { ItemID = 7,  StockTag = "CAM04" },
+                    new Stock { ItemID = 8,  StockTag = "LEN01" },
+                    new Stock { ItemID = 9,  StockTag = "CAM05" },
+                    new Stock { ItemID = 10, StockTag = "CAM06" },
+                    new Stock { ItemID = 11, StockTag = "SD04"  },
+                    new Stock { ItemID = 12, StockTag = "SD05"  },
+                    new Stock { ItemID = 13, StockTag = "SSD01" },
+                    new Stock { ItemID = 14, StockTag = "USB01" },
+                    new Stock { ItemID = 15, StockTag = "HDD01" },
+                    new Stock { ItemID = 16, StockTag = "TAB01" },
+                    new Stock { ItemID = 17, StockTag = "TAB02" },
+                    new Stock { ItemID = 18, StockTag = "TAB03" },
+                    new Stock { ItemID = 19, StockTag = "TAB04" },
+                    new Stock { ItemID = 20, StockTag = "TAB05" },
+                    new Stock { ItemID = 21, StockTag = "PNT01" },
+                    new Stock { ItemID = 22, StockTag = "PNT02" },
+                    new Stock { ItemID = 23, StockTag = "PNT03" },
+                    new Stock { ItemID = 24, StockTag = "PNT04" },
+                    new Stock { ItemID = 25, StockTag = "PNT05" },
+                    new Stock { ItemID = 26, StockTag = "PNT06" },
+                    new Stock { ItemID = 27, StockTag = "PNT07" },
+                    new Stock { ItemID = 28, StockTag = "PNT08" },
+                    new Stock { ItemID = 29, StockTag = "PNT09" },
+                    new Stock { ItemID = 30, StockTag = "PNT10" },
+                    new Stock { ItemID = 31, StockTag = "PNT11" },
                 };
                 foreach (var st in stocks) context.Stock.Add(st);
+                context.SaveChanges();
+            }
+
+            if (!context.Issue.Any())
+            {
+                var user = context.Users.FirstOrDefault();
+                if (user == null) return;
+
+                var issues = new Issue[]
+                {
+                    new Issue { StudentID = 1, UserID = user.Id, SubjectID = 1, Period = 2, Reason = "Photography assignment",     DateIssued = DateTime.Parse("2025-01-15") },
+                    new Issue { StudentID = 2, UserID = user.Id, SubjectID = 2, Period = 4, Reason = "Digital illustration work",  DateIssued = DateTime.Parse("2025-02-01") },
+                    new Issue { StudentID = 3, UserID = user.Id, SubjectID = 3, Period = 1, Reason = "Painting assessment",        DateIssued = DateTime.Parse("2025-03-05") },
+                    new Issue { StudentID = 4, UserID = user.Id, SubjectID = 1, Period = 3, Reason = "Studio shoot",              DateIssued = DateTime.Parse("2025-03-10") },
+                    new Issue { StudentID = 5, UserID = user.Id, SubjectID = 3, Period = 2, Reason = "Oil painting project",      DateIssued = DateTime.Parse("2025-03-15") },
+                    new Issue { StudentID = 6,  UserID = user.Id, SubjectID = 4,  Period = 1, Reason = "Photography coursework", DateIssued = DateTime.Parse("2025-03-20") },
+                    new Issue { StudentID = 7,  UserID = user.Id, SubjectID = 5,  Period = 2, Reason = "Painting project", DateIssued = DateTime.Parse("2025-03-21") },
+                    new Issue { StudentID = 8,  UserID = user.Id, SubjectID = 6,  Period = 3, Reason = "Digital design task", DateIssued = DateTime.Parse("2025-03-22") },
+                    new Issue { StudentID = 9,  UserID = user.Id, SubjectID = 7,  Period = 4, Reason = "Portfolio work", DateIssued = DateTime.Parse("2025-03-24") },
+                    new Issue { StudentID = 10, UserID = user.Id, SubjectID = 8,  Period = 5, Reason = "Studio session", DateIssued = DateTime.Parse("2025-03-25") },
+                    new Issue { StudentID = 11, UserID = user.Id, SubjectID = 9,  Period = 1, Reason = "Photography shoot", DateIssued = DateTime.Parse("2025-03-27") },
+                    new Issue { StudentID = 12, UserID = user.Id, SubjectID = 10, Period = 2, Reason = "Assessment work", DateIssued = DateTime.Parse("2025-03-28") },
+                    new Issue { StudentID = 13, UserID = user.Id, SubjectID = 1,  Period = 3, Reason = "Art practice", DateIssued = DateTime.Parse("2025-03-29") },
+                    new Issue { StudentID = 14, UserID = user.Id, SubjectID = 2,  Period = 4, Reason = "Digital illustration", DateIssued = DateTime.Parse("2025-03-31") },
+                    new Issue { StudentID = 15, UserID = user.Id, SubjectID = 3,  Period = 5, Reason = "Painting assessment", DateIssued = DateTime.Parse("2025-04-01") },
+                    new Issue { StudentID = 16, UserID = user.Id, SubjectID = 4,  Period = 1, Reason = "Photography project", DateIssued = DateTime.Parse("2025-04-03") },
+                    new Issue { StudentID = 17, UserID = user.Id, SubjectID = 5,  Period = 2, Reason = "Design portfolio", DateIssued = DateTime.Parse("2025-04-04") },
+                    new Issue { StudentID = 18, UserID = user.Id, SubjectID = 6,  Period = 3, Reason = "Coursework", DateIssued = DateTime.Parse("2025-04-05") },
+                    new Issue { StudentID = 19, UserID = user.Id, SubjectID = 7,  Period = 4, Reason = "Practical work", DateIssued = DateTime.Parse("2025-04-07") },
+                    new Issue { StudentID = 20, UserID = user.Id, SubjectID = 8,  Period = 5, Reason = "Research project", DateIssued = DateTime.Parse("2025-04-08") },
+                    new Issue { StudentID = 21, UserID = user.Id, SubjectID = 9,  Period = 1, Reason = "Camera loan", DateIssued = DateTime.Parse("2025-04-10") },
+                    new Issue { StudentID = 22, UserID = user.Id, SubjectID = 10, Period = 2, Reason = "Artwork development", DateIssued = DateTime.Parse("2025-04-11") },
+                    new Issue { StudentID = 23, UserID = user.Id, SubjectID = 1,  Period = 3, Reason = "Digital art project", DateIssued = DateTime.Parse("2025-04-12") },
+                    new Issue { StudentID = 24, UserID = user.Id, SubjectID = 2,  Period = 4, Reason = "Portfolio preparation", DateIssued = DateTime.Parse("2025-04-14") },
+                    new Issue { StudentID = 25, UserID = user.Id, SubjectID = 3,  Period = 5, Reason = "Painting task", DateIssued = DateTime.Parse("2025-04-15") },
+                    new Issue { StudentID = 26, UserID = user.Id, SubjectID = 4,  Period = 1, Reason = "Photography assignment", DateIssued = DateTime.Parse("2025-04-17") },
+                    new Issue { StudentID = 27, UserID = user.Id, SubjectID = 5,  Period = 2, Reason = "Creative project", DateIssued = DateTime.Parse("2025-04-18") },
+                    new Issue { StudentID = 28, UserID = user.Id, SubjectID = 6,  Period = 3, Reason = "Design work", DateIssued = DateTime.Parse("2025-04-19") },
+                    new Issue { StudentID = 29, UserID = user.Id, SubjectID = 7,  Period = 4, Reason = "Assessment preparation", DateIssued = DateTime.Parse("2025-04-21") },
+                    new Issue { StudentID = 30, UserID = user.Id, SubjectID = 8,  Period = 5, Reason = "Exhibition preparation", DateIssued = DateTime.Parse("2025-04-22") },
+                };
+                foreach (var iss in issues) context.Issue.Add(iss);
                 context.SaveChanges();
             }
 
@@ -72,11 +198,38 @@ namespace WebApplication3.Data
             {
                 var itemIssues = new ItemIssue[]
                 {
-                    new ItemIssue { IssueID = 1, ItemID = 1, Category = Category.Photography, Condition = Condition.Excellent, Note = "No issues noted."            },
-                    new ItemIssue { IssueID = 1, ItemID = 3, Category = Category.Storage,     Condition = Condition.Good,      Note = "Minor scratches on case."    },
-                    new ItemIssue { IssueID = 2, ItemID = 2, Category = Category.Tablets,     Condition = Condition.Good,      Note = "Screen protector peeling."   },
-                    new ItemIssue { IssueID = 2, ItemID = 4, Category = Category.Paints,      Condition = Condition.Poor,      Note = "Several colours running low." },
-                    new ItemIssue { IssueID = 3, ItemID = 5, Category = Category.Photography, Condition = Condition.Damaged,   Note = "One leg latch is broken."    },
+                    new ItemIssue { IssueID = 1, StockID = 1                                                                              },
+                    new ItemIssue { IssueID = 1, StockID = 4                                                                              },
+                    new ItemIssue { IssueID = 2, StockID = 7,  DateReturned = DateTime.Parse("2025-02-08")                               },
+                    new ItemIssue { IssueID = 3, StockID = 9,  Note = "Two colours nearly empty.", DateReturned = DateTime.Parse("2025-03-12") },
+                    new ItemIssue { IssueID = 4, StockID = 2                                                                              },
+                    new ItemIssue { IssueID = 4, StockID = 5                                                                              },
+                    new ItemIssue { IssueID = 5, StockID = 11, Note = "Linseed oil lid cracked."                                         },
+                    new ItemIssue { IssueID = 6,  StockID = 12 },
+                    new ItemIssue { IssueID = 7,  StockID = 13 },
+                    new ItemIssue { IssueID = 8,  StockID = 14 },
+                    new ItemIssue { IssueID = 9,  StockID = 15 },
+                    new ItemIssue { IssueID = 10, StockID = 16 },
+                    new ItemIssue { IssueID = 11, StockID = 17, DateReturned = DateTime.Parse("2025-04-01") },
+                    new ItemIssue { IssueID = 12, StockID = 18 },
+                    new ItemIssue { IssueID = 13, StockID = 19 },
+                    new ItemIssue { IssueID = 14, StockID = 20, Note = "Pen pressure issue reported" },
+                    new ItemIssue { IssueID = 15, StockID = 21, DateReturned = DateTime.Parse("2025-04-18") },
+                    new ItemIssue { IssueID = 16, StockID = 22 },
+                    new ItemIssue { IssueID = 17, StockID = 23 },
+                    new ItemIssue { IssueID = 18, StockID = 24 },
+                    new ItemIssue { IssueID = 19, StockID = 25, Note = "Minor paint residue" },
+                    new ItemIssue { IssueID = 20, StockID = 26 },
+                    new ItemIssue { IssueID = 21, StockID = 27, DateReturned = DateTime.Parse("2025-04-28") },
+                    new ItemIssue { IssueID = 22, StockID = 28 },
+                    new ItemIssue { IssueID = 23, StockID = 29 },
+                    new ItemIssue { IssueID = 24, StockID = 30 },
+                    new ItemIssue { IssueID = 25, StockID = 31 },
+                    new ItemIssue { IssueID = 26, StockID = 12 },
+                    new ItemIssue { IssueID = 27, StockID = 13 },
+                    new ItemIssue { IssueID = 28, StockID = 14, DateReturned = DateTime.Parse("2025-05-02") },
+                    new ItemIssue { IssueID = 29, StockID = 15 },
+                    new ItemIssue { IssueID = 30, StockID = 16 },
                 };
                 foreach (var ii in itemIssues) context.ItemIssue.Add(ii);
                 context.SaveChanges();

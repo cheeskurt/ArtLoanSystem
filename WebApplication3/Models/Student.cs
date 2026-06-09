@@ -3,17 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication3.Models
 {
-    // An enum declaring dropdown options.
-    public enum Class
-    {
-        B1,
-        B2,
-        B3,
-        B4,
-        B5,
-        B6
-    } 
-
     public class Student
     {
 

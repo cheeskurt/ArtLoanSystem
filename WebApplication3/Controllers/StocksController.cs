@@ -54,7 +54,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StockID,ItemID")] Stock stock)
+        public async Task<IActionResult> Create([Bind("StockID,ItemID,StockTag")] Stock stock)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StockID,ItemID")] Stock stock)
+        public async Task<IActionResult> Edit(int id, [Bind("StockID,ItemID,StockTag")] Stock stock)
         {
             if (id != stock.StockID)
             {

@@ -16,6 +16,7 @@ namespace WebApplication3.Models
         [Display(Name = "Stock #")]
         public string StockTag {  get; set; }
 
-        public Item Items { get; set; }
+        public Item Item { get; set; }
+        public ICollection<ItemIssue> ItemIssues { get; set; }
     }
 }

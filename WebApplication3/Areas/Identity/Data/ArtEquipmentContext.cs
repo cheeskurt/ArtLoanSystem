@@ -8,6 +8,7 @@ namespace WebApplication3.Areas.Identity.Data;
 
 public class ArtEquipmentContext : IdentityDbContext<User>
 {
+
     public ArtEquipmentContext(DbContextOptions<ArtEquipmentContext> options)
         : base(options)
     {
@@ -28,6 +29,8 @@ public DbSet<WebApplication3.Models.ItemIssue> ItemIssue { get; set; } = default
 public DbSet<WebApplication3.Models.Student> Student { get; set; } = default!;
 
 public DbSet<WebApplication3.Models.Issue> Issue { get; set; } = default!;
+
+public DbSet<WebApplication3.Models.Subject> Subject { get; set; } = default!;
 
 public DbSet<WebApplication3.Models.Stock> Stock { get; set; } = default!;
 }

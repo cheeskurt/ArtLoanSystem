@@ -18,7 +18,7 @@ namespace WebApplication3.Models
 
         [Required]
         [ForeignKey("User")]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         [Required]
         [ForeignKey("Subject")]
@@ -32,8 +32,9 @@ namespace WebApplication3.Models
         [Required]
         public DateTime DateIssued { get; set; }
 
-        public Student Students { get; set; }
-        public User Users { get; set; }
-        public Subject Subjects { get; set; }
+        public Student Student { get; set; }
+        public User User { get; set; }
+        public Subject Subject { get; set; }
+        public ICollection<ItemIssue> ItemIssues { get; set; }
     }
 }
