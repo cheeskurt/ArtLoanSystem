@@ -12,12 +12,6 @@ namespace WebApplication3.Areas.Identity.Data;
 
 public class User : IdentityUser
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
 
-    [MaxLength(3)]
-    public string TeacherCode { get; set; }
-
-    public ICollection<Issue> Issues { get; set; }
 }
 
