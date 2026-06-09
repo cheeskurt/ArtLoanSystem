@@ -22,7 +22,7 @@ namespace WebApplication3.Models
 
         public DateTime? DateReturned { get; set; }
 
-        public Issue Issue { get; set; }
-        public Stock Stock { get; set; }
+        public Issue? Issue { get; set; }
+        public Stock? Stock { get; set; }
     }
 }

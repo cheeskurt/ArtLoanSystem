@@ -19,6 +19,6 @@ namespace WebApplication3.Models
         [Required]
         public Category Category { get; set; }
 
-        public ICollection<Stock> Stocks { get; set; }
+        public ICollection<Stock>? Stocks { get; set; }
     }
 }

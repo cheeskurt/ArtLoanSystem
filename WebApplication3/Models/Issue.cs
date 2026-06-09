@@ -34,9 +34,8 @@ namespace WebApplication3.Models
         [Required]
         public DateTime DateIssued { get; set; }
 
-        public Student Student { get; set; }
-        public User User { get; set; }
-        public Subject Subject { get; set; }
-        public ICollection<ItemIssue> ItemIssues { get; set; }
+        public Student? Student { get; set; }
+        public Subject? Subject { get; set; }
+        public ICollection<ItemIssue>? ItemIssues { get; set; }
     }
 }

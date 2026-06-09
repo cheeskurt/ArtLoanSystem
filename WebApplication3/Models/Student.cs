@@ -26,6 +26,6 @@ namespace WebApplication3.Models
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")] 
         public string Email { get; set; }
 
-        public ICollection<Issue> Issues { get; set; }
+        public ICollection<Issue>? Issues { get; set; }
     }
 }
