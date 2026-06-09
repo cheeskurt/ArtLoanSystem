@@ -20,15 +20,15 @@ public class StocksController : Controller
     }
 
     // GET: STOCKS/Details/5
-    public async Task<IActionResult> Details(int? stockid)
+    public async Task<IActionResult> Details(int? id)
     {
-        if (stockid == null)
+        if (id == null)
         {
             return NotFound();
         }
 
         var stock = await _context.Stock
-            .FirstOrDefaultAsync(m => m.StockID == stockid);
+            .FirstOrDefaultAsync(m => m.StockID == id);
         if (stock == null)
         {
             return NotFound();
@@ -60,14 +60,14 @@ public class StocksController : Controller
     }
 
     // GET: STOCKS/Edit/5
-    public async Task<IActionResult> Edit(int? stockid)
+    public async Task<IActionResult> Edit(int? id)
     {
-        if (stockid == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var stock = await _context.Stock.FindAsync(stockid);
+        var stock = await _context.Stock.FindAsync(id);
         if (stock == null)
         {
             return NotFound();
@@ -80,9 +80,9 @@ public class StocksController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? stockid, [Bind("StockID,ItemID,StockTag,Item,ItemIssues")] Stock stock)
+    public async Task<IActionResult> Edit(int? id, [Bind("StockID,ItemID,StockTag,Item,ItemIssues")] Stock stock)
     {
-        if (stockid != stock.StockID)
+        if (id != stock.StockID)
         {
             return NotFound();
         }
@@ -111,15 +111,15 @@ public class StocksController : Controller
     }
 
     // GET: STOCKS/Delete/5
-    public async Task<IActionResult> Delete(int? stockid)
+    public async Task<IActionResult> Delete(int? id)
     {
-        if (stockid == null)
+        if (id == null)
         {
             return NotFound();
         }
 
         var stock = await _context.Stock
-            .FirstOrDefaultAsync(m => m.StockID == stockid);
+            .FirstOrDefaultAsync(m => m.StockID == id);
         if (stock == null)
         {
             return NotFound();
@@ -131,9 +131,9 @@ public class StocksController : Controller
     // POST: STOCKS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int? stockid)
+    public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var stock = await _context.Stock.FindAsync(stockid);
+        var stock = await _context.Stock.FindAsync(id);
         if (stock != null)
         {
             _context.Stock.Remove(stock);
@@ -143,8 +143,8 @@ public class StocksController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private bool StockExists(int? stockid)
+    private bool StockExists(int? id)
     {
-        return _context.Stock.Any(e => e.StockID == stockid);
+        return _context.Stock.Any(e => e.StockID == id);
     }
 }
