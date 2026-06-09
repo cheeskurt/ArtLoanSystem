@@ -4,7 +4,7 @@
     ViewData["Title"] = "Issued Items";
 }
 
-<h1>Index</h1>
+<h1>Issued Items</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.IssueID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stock)
+                @Html.DisplayFor(modelItem => item.StockID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Note)
