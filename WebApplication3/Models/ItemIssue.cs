@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication3.Models.Attributes;
 
 namespace WebApplication3.Models
 {
@@ -20,6 +21,8 @@ namespace WebApplication3.Models
         [MaxLength(150)]
         public string? Note { get; set; }
 
+        [PastDate]
+        [FutureDate]
         public DateTime? DateReturned { get; set; }
 
         public Issue? Issue { get; set; }

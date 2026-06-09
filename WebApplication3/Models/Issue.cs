@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.Pkcs;
 using WebApplication3.Areas.Identity.Data;
+using WebApplication3.Models.Attributes;
 
 namespace WebApplication3.Models
 {
@@ -32,7 +33,8 @@ namespace WebApplication3.Models
         public string? Reason { get; set; }
 
         [Required]
-        []
+        [PastDate]
+        [FutureDate]
         public DateTime DateIssued { get; set; }
 
         public Student? Student { get; set; }
