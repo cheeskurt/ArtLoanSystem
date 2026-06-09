@@ -2,12 +2,12 @@
 
 namespace WebApplication3.Models.Attributes
 {
-    /// <summary<
-    /// Validates that a DateTime value is not in the Past.
-    /// </summary<
-    public class NotPastDateAttribute : ValidationAttribute
+    /// <summary>
+    /// Validates that a DateTime value is not in the past.
+    /// </summary>
+    public class PastDateAttribute : ValidationAttribute
     {
-        public NotPastDateAttribute()
+        public PastDateAttribute()
         {
             // Default error message if none is provided
             ErrorMessage = "You cannot set a further date.";

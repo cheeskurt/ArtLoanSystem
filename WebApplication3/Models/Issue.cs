@@ -32,6 +32,7 @@ namespace WebApplication3.Models
         public string? Reason { get; set; }
 
         [Required]
+        []
         public DateTime DateIssued { get; set; }
 
         public Student? Student { get; set; }

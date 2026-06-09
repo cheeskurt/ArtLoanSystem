@@ -5,9 +5,9 @@ namespace WebApplication3.Models.Attributes
     /// <summary>
     /// Validates that a DateTime value is not in the future.
     /// </summary>
-    public class NotFutureDateAttribute : ValidationAttribute
+    public class FutureDateAttribute : ValidationAttribute
     {
-        public NotFutureDateAttribute()
+        public FutureDateAttribute()
         {
             // Default error message if none is provided
             ErrorMessage = "You cannot set a further date.";
