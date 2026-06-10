@@ -1,2 +1,2 @@
 ﻿SELECT * 
-FROM Stock
+FROM Item
