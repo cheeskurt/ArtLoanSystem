@@ -16,6 +16,8 @@ namespace WebApplication3.Models
         [Display(Name = "Item Name")]
         public string ItemName { get; set; }
 
+        public IFormFile Attachment { get; set; }
+
         [Required]
         public Category Category { get; set; }
 
