@@ -258,7 +258,7 @@ namespace WebApplication3.Migrations
 
                     b.HasIndex("SubjectID");
 
-                    b.ToTable("Issue");
+                    b.ToTable("Issue", (string)null);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Item", b =>
@@ -278,7 +278,7 @@ namespace WebApplication3.Migrations
 
                     b.HasKey("ItemID");
 
-                    b.ToTable("Item");
+                    b.ToTable("Item", (string)null);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.ItemIssue", b =>
@@ -308,7 +308,7 @@ namespace WebApplication3.Migrations
 
                     b.HasIndex("StockID");
 
-                    b.ToTable("ItemIssue");
+                    b.ToTable("ItemIssue", (string)null);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Stock", b =>
@@ -329,7 +329,7 @@ namespace WebApplication3.Migrations
 
                     b.HasIndex("ItemID");
 
-                    b.ToTable("Stock");
+                    b.ToTable("Stock", (string)null);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Student", b =>
@@ -359,7 +359,7 @@ namespace WebApplication3.Migrations
 
                     b.HasKey("StudentID");
 
-                    b.ToTable("Student");
+                    b.ToTable("Student", (string)null);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Subject", b =>
@@ -376,7 +376,7 @@ namespace WebApplication3.Migrations
 
                     b.HasKey("SubjectID");
 
-                    b.ToTable("Subject");
+                    b.ToTable("Subject", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

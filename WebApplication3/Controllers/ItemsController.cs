@@ -13,10 +13,12 @@ namespace WebApplication3.Controllers
     public class ItemsController : Controller
     {
         private readonly ArtEquipmentContext _context;
+        private readonly IWebHostEnvironment _hostenv;
 
-        public ItemsController(ArtEquipmentContext context)
+        public ItemsController(ArtEquipmentContext context, IWebHostEnvironment hostenv)
         {
             _context = context;
+            _hostenv = hostenv;
         }
 
         // GET: Items
@@ -54,10 +56,20 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,Category")] Item item)
+        public async Task<IActionResult> Create([Bind("ItemID,ItemName,Attachment,Category")] Item item)
         {
             if (ModelState.IsValid)
             {
+                string wwwrootPath= _hostenv.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(item.Attachment.FileName);
+                string extension = Path.GetExtension(item.Attachment.FileName);
+                item.ItemName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                string path = Path.Combine(wwwrootPath + "/Image/", fileName);
+                using (var filestream = new FileStream(path,FileMode.Create))
+                {
+                    await item.Attachment.CopyToAsync(filestream);
+                }
+
                 _context.Add(item);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

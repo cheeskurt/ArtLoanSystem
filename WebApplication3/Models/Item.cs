@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication3.Models
 {
@@ -16,7 +17,9 @@ namespace WebApplication3.Models
         [Display(Name = "Item Name")]
         public string ItemName { get; set; }
 
-        public IFormFile Attachment { get; set; }
+        [NotMapped]
+        [Display(Name = "Attach File")]
+        public IFormFile? Attachment { get; set; }
 
         [Required]
         public Category Category { get; set; }
