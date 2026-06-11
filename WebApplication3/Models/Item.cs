@@ -17,6 +17,10 @@ namespace WebApplication3.Models
         [Display(Name = "Item Name")]
         public string ItemName { get; set; }
 
+        [Required]
+        [Display(Name = "Attachment Name")]
+        public string? AttachmentName { get; set; }
+
         [NotMapped]
         [Display(Name = "Attach File")]
         public IFormFile? Attachment { get; set; }

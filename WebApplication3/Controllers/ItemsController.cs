@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -56,18 +57,17 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,Attachment,Category")] Item item)
+        public async Task<IActionResult> Create([Bind("ItemID,ItemName,AttachmentName,Attachment,Category")] Item item)
         {
             if (ModelState.IsValid)
             {
-                string wwwrootPath= _hostenv.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(item.Attachment.FileName);
-                string extension = Path.GetExtension(item.Attachment.FileName);
-                item.ItemName = fileName + DateTime.Now.ToString("yymmssff") + extension;
-                string path = Path.Combine(wwwrootPath + "/Image/", fileName);
-                using (var filestream = new FileStream(path,FileMode.Create))
+                string img = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                img += Path.GetExtension(item.Attachment!.FileName);
+
+                string imgpath = _hostenv.WebRootPath + "/img/" + img;
+                using (var stream = System.IO.File.Create(imgpath))
                 {
-                    await item.Attachment.CopyToAsync(filestream);
+                    item.Attachment.CopyTo(stream);
                 }
 
                 _context.Add(item);
@@ -98,7 +98,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,Category")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,AttachmentName,Attachment,Category")] Item item)
         {
             if (id != item.ItemID)
             {
@@ -126,6 +126,22 @@ namespace WebApplication3.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(item);
+
+            string img = item.AttachmentName;
+            if (item.Attachment != null)
+            {
+                img = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                img += Path.GetExtension(item.Attachment.FileName);
+
+                string imgpath = _hostenv.WebRootPath + "/img/" + img;
+                using(var stream = System.IO.File.Create(img))
+                {
+                    item.Attachment.CopyTo(stream);
+                }
+            }
+
+            string oldimgpath = _hostenv.WebRootPath + "/img/" + item.AttachmentName;
+            System.IO.File.Delete(oldimgpath);
         }
 
         // GET: Items/Delete/5
@@ -152,6 +168,10 @@ namespace WebApplication3.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var item = await _context.Item.FindAsync(id);
+
+            string imgpath = _hostenv.WebRootPath + "/img/" + item.AttachmentName;
+            System.IO.File.Delete(imgpath);
+
             if (item != null)
             {
                 _context.Item.Remove(item);

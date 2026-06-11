@@ -24,6 +24,7 @@ public class StocksController : Controller
     {
         if (id == null)
         {
+            
             return NotFound();
         }
 
