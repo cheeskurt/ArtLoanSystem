@@ -16,9 +16,6 @@
                 @Html.DisplayNameFor(model => model.ItemName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AttachmentName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Attachment)
             </th>
             <th>
@@ -34,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.ItemName)
             </td>
             <td>
-                <img src="@("~/img/" + item.AttachmentName)" asp-append-version="true" height="64px" width="64px" />
+                <img src="@("~/img/" + item.ItemName)" asp-append-version="true" height="64px" width="64px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)

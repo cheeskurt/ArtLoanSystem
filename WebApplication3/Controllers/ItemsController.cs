@@ -57,7 +57,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,AttachmentName,Attachment,Category")] Item item)
+        public async Task<IActionResult> Create([Bind("ItemID,ItemName,Attachment,Category")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,AttachmentName,Attachment,Category")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,Attachment,Category")] Item item)
         {
             if (id != item.ItemID)
             {
@@ -109,6 +109,23 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
+                    string img = item.ItemName;
+                    if (item.Attachment != null)
+                    {
+                        img = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                        img += Path.GetExtension(item.Attachment.FileName);
+
+                        string imgpath = _hostenv.WebRootPath + "/img/" + img;
+                        using(var stream = System.IO.File.Create(img))
+                        {
+                            item.Attachment.CopyTo(stream);
+                        }
+                    }
+
+                    string oldimgpath = _hostenv.WebRootPath + "/img/" + item.ItemName;
+                    System.IO.File.Delete(oldimgpath);
+
+
                     _context.Update(item);
                     await _context.SaveChangesAsync();
                 }
@@ -126,22 +143,6 @@ namespace WebApplication3.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(item);
-
-            string img = item.AttachmentName;
-            if (item.Attachment != null)
-            {
-                img = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                img += Path.GetExtension(item.Attachment.FileName);
-
-                string imgpath = _hostenv.WebRootPath + "/img/" + img;
-                using(var stream = System.IO.File.Create(img))
-                {
-                    item.Attachment.CopyTo(stream);
-                }
-            }
-
-            string oldimgpath = _hostenv.WebRootPath + "/img/" + item.AttachmentName;
-            System.IO.File.Delete(oldimgpath);
         }
 
         // GET: Items/Delete/5
@@ -169,7 +170,7 @@ namespace WebApplication3.Controllers
         {
             var item = await _context.Item.FindAsync(id);
 
-            string imgpath = _hostenv.WebRootPath + "/img/" + item.AttachmentName;
+            string imgpath = _hostenv.WebRootPath + "/img/" + item.ItemName;
             System.IO.File.Delete(imgpath);
 
             if (item != null)
