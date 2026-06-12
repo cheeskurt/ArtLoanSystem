@@ -58,7 +58,7 @@ public class StocksController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ForeignKeyDropdown(stock.ItemID);
+        ItemForeignKeyDropdown(stock.ItemID);
         return View(stock);
     }
 
@@ -110,16 +110,16 @@ public class StocksController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        ForeignKeyDropdown(stock.ItemID);
+        ItemForeignKeyDropdown(stock.ItemID);
         return View(stock);
     }
 
-    private void ForeignKeyDropdown(object selectedItem = null)
+    private void ItemForeignKeyDropdown(object selected = null)
     {
-        var itemsQuery = from i in _context.Item
+        var query = from i in _context.Item
         orderby i.ItemName
         select i;
-        ViewBag.ItemID = new SelectList(itemsQuery.AsNoTracking(), "ItemID", "ItemName", selectedItem);
+        ViewBag.ItemID = new SelectList(query.AsNoTracking(), "ItemID", "ItemName", selected);
     }
 
     // GET: STOCKS/Delete/5

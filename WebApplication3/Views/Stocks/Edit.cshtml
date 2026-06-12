@@ -15,7 +15,9 @@
             <input type="hidden" asp-for="StockID" />
             <div class="form-group">
                 <label asp-for="ItemID" class="control-label"></label>
-                <input asp-for="ItemID" class="form-control" />
+                <select asp-for="ItemID" class="form-control" asp-items="ViewBag.ItemID">
+                    <option value="">-- Select Item --</option>
+                </select>
                 <span asp-validation-for="ItemID" class="text-danger"></span>
             </div>
             <div class="form-group">

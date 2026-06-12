@@ -62,6 +62,7 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            SubjectForeignKeyDropdown(issue.SubjectID);
             return View(issue);
         }
 
@@ -113,7 +114,16 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            SubjectForeignKeyDropdown(issue.SubjectID);
             return View(issue);
+        }
+
+        private void SubjectForeignKeyDropdown(object selected = null)
+        {
+            var query = from s in _context.Subject
+            orderby s.SubjectName
+            select s;
+            ViewBag.SubjectID = new SelectList(query.AsNoTracking(), "SubjectID", "SubjectName", selected);
         }
 
         // GET: Issues/Delete/5
