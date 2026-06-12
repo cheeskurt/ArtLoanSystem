@@ -170,11 +170,11 @@ namespace WebApplication3.Controllers
         {
             var item = await _context.Item.FindAsync(id);
 
-            string imgpath = _hostenv.WebRootPath + "/img/" + item.ItemName;
-            System.IO.File.Delete(imgpath);
-
             if (item != null)
             {
+                string imgpath = _hostenv.WebRootPath + "/img/" + item.ItemName;
+                System.IO.File.Delete(imgpath);
+
                 _context.Item.Remove(item);
             }
 

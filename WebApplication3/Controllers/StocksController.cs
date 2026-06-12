@@ -1,8 +1,9 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebApplication3.Models;
 using WebApplication3.Areas.Identity.Data;
+using WebApplication3.Models;
 
 public class StocksController : Controller
 {
@@ -57,6 +58,7 @@ public class StocksController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        ForeignKeyDropdown(stock.ItemID);
         return View(stock);
     }
 
@@ -108,7 +110,16 @@ public class StocksController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
+        ForeignKeyDropdown(stock.ItemID);
         return View(stock);
+    }
+
+    private void ForeignKeyDropdown(object selectedItem = null)
+    {
+        var itemsQuery = from i in _context.Item
+        orderby i.ItemName
+        select i;
+        ViewBag.ItemID = new SelectList(itemsQuery.AsNoTracking(), "ItemID", "ItemName", selectedItem);
     }
 
     // GET: STOCKS/Delete/5
