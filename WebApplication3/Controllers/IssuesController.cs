@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using WebApplication3.Areas.Identity.Data;
 using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
+    [Authorize(Roles = "Teacher")]
     public class IssuesController : Controller
     {
         private readonly ArtEquipmentContext _context;
@@ -58,11 +60,13 @@ namespace WebApplication3.Controllers
         {
             if (ModelState.IsValid)
             {
+                SubjectForeignKeyDropdown(issue.SubjectID);
                 _context.Add(issue);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
-            SubjectForeignKeyDropdown(issue.SubjectID);
+
             return View(issue);
         }
 
@@ -98,6 +102,7 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
+                    SubjectForeignKeyDropdown(issue.SubjectID);
                     _context.Update(issue);
                     await _context.SaveChangesAsync();
                 }
@@ -114,7 +119,7 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            SubjectForeignKeyDropdown(issue.SubjectID);
+            
             return View(issue);
         }
 

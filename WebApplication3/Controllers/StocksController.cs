@@ -1,9 +1,12 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Areas.Identity.Data;
 using WebApplication3.Models;
+
+[Authorize(Roles = "Teacher")]
 
 public class StocksController : Controller
 {

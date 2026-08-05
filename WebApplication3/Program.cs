@@ -7,7 +7,8 @@ var connectionString = builder.Configuration.GetConnectionString("ArtEquipmentCo
 
 builder.Services.AddDbContext<ArtEquipmentContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ArtEquipmentContext>();
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<ArtEquipmentContext>();
+    
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -52,5 +53,40 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+using (var scope = app.Services.CreateScope())
+{
+    var role_manager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    var roles = new[] { "Teacher"};
+
+    foreach (var role in roles)
+    {
+        if (!await role_manager.RoleExistsAsync(role))
+            await role_manager.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var usr_manager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+    // ecc7ebb7-0241-4f85-a6d8-39208c0f4d3c
+
+    string email = "art@rmail.com";
+    string password = "Heart2026~";
+
+
+    if(await usr_manager.FindByEmailAsync(email) == null)
+    {
+        var usr = new User();
+        usr.UserName = email;
+        usr.Email = email;
+
+        await usr_manager.CreateAsync(usr, password);
+
+        await usr_manager.AddToRoleAsync(usr, "Teacher");
+
+    }
+}
 
 app.Run();

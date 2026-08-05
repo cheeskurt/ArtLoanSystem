@@ -1,8 +1,11 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplication3.Models;
 using WebApplication3.Areas.Identity.Data;
+using WebApplication3.Models;
+
+[Authorize(Roles = "Teacher")]
 
 public class SubjectsController : Controller
 {
