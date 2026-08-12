@@ -25,9 +25,29 @@ namespace WebApplication3.Controllers
         }
 
         // GET: Items
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Item.ToListAsync());
+            ViewData["ItemSortParm"] = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
+            ViewData["CategorySortParm"] = String.IsNullOrEmpty(sortOrder) ? "category_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var items = from i in _context.Item
+                           select i;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(i => i.ItemName.Contains(searchString)
+                                       || i.Category.ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    items = items.OrderByDescending(i => i.ItemName);
+                    break;
+                case "category_desc":
+                    items = items.OrderByDescending(i => i.Category);
+                    break;
+            }
+            return View(await items.AsNoTracking().ToListAsync());
         }
 
         // GET: Items/Details/5
